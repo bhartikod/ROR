@@ -1,0 +1,25 @@
+<h2>Comments</h2>
+<table>
+<% @post.comments.each do |comment| %>
+<tr>
+  <td><strong>Comment:</strong> </td>
+   <td> <%= comment.content %></td>
+   <td> <%= current_user.email %></td>
+  <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+  <td><%= link_to 'Destroy', comment_path(comment),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+ <td> <%= comment.likes.count %> </td>
+ <% pre_like = comment.likes.find_by_user_id(current_user.id) %>
+      <% if pre_like %>
+      <td> <%= link_to 'Unlike', like_comment_path(comment) %></td>
+      <% else %>
+      <td> <%= link_to 'Like', like_comment_path(comment) %> </td>
+      <% end %>
+ 
+ </tr>
+<% end %>
+</table>
+<%= render 'form' %>
+<%= link_to 'back', posts_path %> 
+<%#= link_to 'New comment', new_post_comment_path(@post) %>

@@ -1,0 +1,19 @@
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @post.description %>
+</p>
+ <td> <%= button_to 'Like', post_likes_path(@post), method: :post %>
+<% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
+<% if pre_like %>
+  <%= button_to 'Unlike', post_like_path(@post, pre_like), method: :delete %>
+<% end %>
+ 
+ 
+ 
+<%= link_to 'Edit', edit_post_path(@post) %>
+<%= link_to 'Back', posts_path %>

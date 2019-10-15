@@ -1,0 +1,48 @@
+<div class= "container-fluid">
+<%= render 'form' %>
+
+  <h1>Posts</h1>
+  
+ 
+
+  <% @posts.each do |post| %>
+    <div class="row">
+      <span>
+      <div class="col-sm-2" style="background-color:lavenderblush;"><%= post.title %></div>
+      <span>
+        <span>
+      <div class="col-sm-2" style="background-color:lavenderblush;">(<%= post.likes.count %>)</div>
+    </span>
+        
+      <% pre_like = post.likes.find_by_user_id(current_user.id) %>
+      <% if pre_like %>
+      <span>
+            <div class="col-sm-2" style="background-color:lavenderblush;"><%= link_to 'Unlike', like_post_path(post) %></div>
+     </span>
+      <% else %>
+         <div class="col-sm-2" style="background-color:lavenderblush;"><%= link_to 'Like', like_post_path(post) %></div>
+      
+      <% end %>
+       <div class="col-sm-2" style="background-color:lavenderblush;">(<%= post.comments.count %>)</div>
+    
+      <div class="col-sm-2" style="background-color:lavenderblush;"><%= link_to 'Comment', post_comments_path(post) %></div>
+    <div class="col-sm-2" style="background-color:lavenderblush;"><%= link_to 'Show', post_path(post) %> </div>    
+  
+      <% if current_user.id ==  post.user_id %>
+      <div class="col-sm-2" style="background-color:lavenderblush;"><%= link_to 'Edit', edit_post_path(post) %></div>  
+     <div class="col-sm-2" style="background-color:lavenderblush;"><%= link_to 'Destroy', post_path(post),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></div> 
+   
+           
+           <% end %>
+</div>
+    
+  <% end %>
+
+<%= link_to 'New post', new_post_path %>
+<br> 
+<%= link_to 'Show profile', profile_path(current_user.profile) %>
+<br>
+<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+</div>
