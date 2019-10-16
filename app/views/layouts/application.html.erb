@@ -10,28 +10,9 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Blog</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><%= link_to 'Profile', profile_path(current_user.profile) %></li>
+    <%= render partial: 'common/header' %>
+    <%= render partial: 'common/flash_message' %>
 
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      
-      <li class="active"><%= link_to " Logout ", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out"%></li>
-    </ul>
-  </div>
-</nav>
-  
-    <% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
     <%= yield %>
   </body>
 </html>
