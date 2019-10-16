@@ -16,19 +16,19 @@
  
   <p>
     <%= f.label :"first name" %><br>
-    <%= f.text_field :fname %>
+    <%= f.text_field :fname, class: 'form-control' %>
   </p>
  
   <p>
     <%= f.label :"Last Name" %><br>
-    <%= f.text_field :lname %>
+    <%= f.text_field :lname, class: 'form-control' %>
   </p>
 
     <%= f.label :"Address" %><br>
-    <%= f.text_field :address %>
+    <%= f.text_field :address, class: 'form-control' %>
   </p>
    <p>
-    <%= f.submit :save %>
+    <%= f.submit :save, class: 'btn btn-primary form-control' %>
   </p>
  
 <% end %>

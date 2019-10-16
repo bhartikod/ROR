@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get 'welcome/home'
+  root 'posts#index'
+  get 'welcome/home' 
+
   devise_for :users, controllers: {
         sessions: 'users/sessions' 
         
@@ -31,5 +33,4 @@ Rails.application.routes.draw do
     end
   end
   #root 'posts#index'
-  root 'welcome#home'
 end

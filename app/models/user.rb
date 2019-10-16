@@ -7,4 +7,10 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  # after_create :add_profile
+
+  # def add_profile
+  #   build_profile.save
+  # end
 end
