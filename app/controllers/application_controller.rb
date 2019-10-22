@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 	layout :set_layout
+
 	def set_layout
 		if devise_controller?
 			"devise"
@@ -8,13 +9,11 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
-	def after_sign_in_path_for(resource)
-		
+	def after_sign_in_path_for(resource)		
 		if resource.profile.present?
-   			posts_path
+ 			posts_path
 		else
-   			new_profile_path 
+ 			new_profile_path 
 		end
-  	end
-
+	end
 end
