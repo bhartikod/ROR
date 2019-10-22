@@ -42,6 +42,7 @@ def new
   # end
 
 def edit
+  #@post = Post.find(params[:post_id])
   @comment = Comment.find(params[:id])
   #@post = Post.find(params[:post_id])
   #unless @comment.user == current_user

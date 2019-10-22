@@ -51,14 +51,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
    #The path used after sign up.
-   protected
-   def after_sign_up_path_for(resource)
-    "/profile/new"
-   end
+  #  protected
+  #  def after_sign_up_path_for(resource)
+  #   "/profile/new"
+  #  end
 
-  # The path used after sign up for inactive accounts.
-  protected
-   def after_inactive_sign_up_path_for(resource)
-     "/profile/new"
-   end
+  # # The path used after sign up for inactive accounts.
+  # protected
+  #  def after_inactive_sign_up_path_for(resource)
+  #    "/profile/new"
+  #  end
 end

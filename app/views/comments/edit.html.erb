@@ -1,10 +1,14 @@
-<%= form_for @comment do |f| %>
+ <div class="row justify-content-center">
+
+<div class="col-md-4">
+  <%= form_for @comment do |f| %>
   
-  <p>
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+
+   
+     <%= f.label :comment %><br>
+     <%= f.text_area :content, class: 'form-control' %><br>
+     <%= f.submit 'update', class: 'form-control btn btn-primary' %>
+   </p>
 <% end %>
+</div>
+</div>

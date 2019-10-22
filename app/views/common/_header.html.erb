@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="/">LOGO</a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to 'Profile', edit_profile_path(current_user.profile), class: "nav-link" %>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <%= link_to 'log out', destroy_user_session_path, method: "DELETE", class: "nav-link" %>
+      </li>
+    </ul>
+  </nav>
+<% end %>

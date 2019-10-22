@@ -1,4 +1,29 @@
-<div class= "container-fluid">
+<div class="clearfix"></div>
+
+<%= render partial: "form" %>
+<hr>
+<div class="col-md-12">
+  <% @posts.each do |post| %>
+    <div class="post">
+      <%= post.title %>
+      <div class="actions float-right">
+        <%= link_to 'comment', post_comments_path(post.id) %>
+        (<%= post.comments.count %>)
+        |<% if post.user.id == current_user.id %>
+          <%= link_to 'edit', edit_post_path(post) %> | 
+          <%= link_to 'delete', post_path(post), method: "DELETE" , data: {confirm: "Are you sure you want to delete?"} %> |
+        <% end %>
+
+        <% if post.likes.find_by_user_id(current_user.id).present? %>
+          <%= link_to 'unlike', like_post_path(id: post.id) %>
+        <% else %>
+          <%= link_to 'like', like_post_path(id: post.id) %>
+        <% end %>
+         (<%= post.likes.count %>)
+      </div>
+    </div>
+  <% end %>
+<!-- <div class= "container-fluid">
 <%= render 'form' %>
 
   <h1>Posts</h1>
@@ -45,4 +70,4 @@
 <%= link_to 'Show profile', profile_path(current_user.profile) %>
 <br>
 <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-</div>
+</div> -->
