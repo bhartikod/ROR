@@ -13,8 +13,9 @@
           <%= link_to 'edit', edit_post_path(post) %> | 
           <%= link_to 'delete', post_path(post), method: "DELETE" , data: {confirm: "Are you sure you want to delete?"} %> |
         <% end %>
-
-        <% if post.likes.find_by_user_id(current_user.id).present? %>
+        
+        <% liked = post.likes.find_by_user_id(current_user.id).present? %>
+        <% if liked %>
           <%= link_to 'unlike', like_post_path(id: post.id) %>
         <% else %>
           <%= link_to 'like', like_post_path(id: post.id) %>
