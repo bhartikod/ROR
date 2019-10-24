@@ -8,37 +8,36 @@ class PostsController < ApplicationController
 	
 	def new
 		@post = current_user.posts.new
-		
 	end
 	
 	def create
 		@post = current_user.posts.new(post_params)
- 		if @post.save
-    		redirect_to posts_path
-  		else
-    		render 'new'
-  		end
+    @post.save
+    # if @post.save
+    #   redirect_to posts_path
+    # else
+    #   render 'new'
+    # end
 	end
 	
-	def edit
-		
-	end
+	def edit; end
+
 	def like
-    	@post = Post.find(params[:id])
-    	if @post.likes.find_by_user_id(current_user.id).present?
-        	@post.likes.find_by_user_id(current_user.id)&.destroy
-    	else
-      		@post.likes.create(user_id: current_user.id)
-    	end
-    		redirect_to posts_path
+  	@post = Post.find(params[:id])
+  	if @post.likes.find_by_user_id(current_user.id).present?
+    	@post.likes.find_by_user_id(current_user.id)&.destroy
+  	else
+  		@post.likes.create(user_id: current_user.id)
   	end
+		# redirect_to posts_path
+  end
 	
 	def update
 		if @post.update(post_params)
-    		redirect_to posts_path
-  		else
-    		render 'edit'
-  		end
+  		redirect_to posts_path
+		else
+  		render 'edit'
+		end
 	end
 
 	def show
@@ -47,11 +46,12 @@ class PostsController < ApplicationController
 	end
 	
 	def destroy
-  		 @post.destroy
- 
-  		 redirect_to posts_path
+    @post.destroy
+    redirect_to posts_path
 	end
+
 	private
+
 	def find_post
 		@post = Post.find(params[:id])
 	end
@@ -59,6 +59,4 @@ class PostsController < ApplicationController
 	def post_params
 		 params.require(:post).permit(:title, :description)
 	end
-
-
 end

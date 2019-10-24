@@ -1,0 +1,7 @@
+<% liked = post.likes.find_by_user_id(current_user.id).present? %>
+<% if liked %>
+  <%= link_to 'unlike', like_post_path(id: post.id), remote: true %>
+<% else %>
+  <%= link_to 'like', like_post_path(id: post.id), remote: true %>
+<% end %>
+(<%= post.likes.count %>)

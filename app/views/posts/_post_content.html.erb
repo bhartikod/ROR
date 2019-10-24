@@ -1,0 +1,14 @@
+<%= post.title %>
+
+<div class="actions float-right">
+  <%= link_to 'comment', post_comments_path(post.id) %>
+  (<%= post.comments.count %>)
+  |<% if post.user.id == current_user.id %>
+    <%= link_to 'edit', edit_post_path(post) %> | 
+    <%= link_to 'delete', post_path(post), method: "DELETE" , data: {confirm: "Are you sure you want to delete?"} %> |
+  <% end %>
+  
+  <span id="like-unlike-for-post-<%= post.id %>">
+    <%= render partial: 'post_like', locals: { post: post } %>
+  </span>
+</div>

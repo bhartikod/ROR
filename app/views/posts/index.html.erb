@@ -2,26 +2,8 @@
 
 <%= render partial: "form" %>
 <hr>
-<div class="col-md-12">
+<div class="col-md-12 posts">
   <% @posts.each do |post| %>
-    <div class="post">
-      <%= post.title %>
-      <div class="actions float-right">
-        <%= link_to 'comment', post_comments_path(post.id) %>
-        (<%= post.comments.count %>)
-        |<% if post.user.id == current_user.id %>
-          <%= link_to 'edit', edit_post_path(post) %> | 
-          <%= link_to 'delete', post_path(post), method: "DELETE" , data: {confirm: "Are you sure you want to delete?"} %> |
-        <% end %>
-        
-        <% liked = post.likes.find_by_user_id(current_user.id).present? %>
-        <% if liked %>
-          <%= link_to 'unlike', like_post_path(id: post.id) %>
-        <% else %>
-          <%= link_to 'like', like_post_path(id: post.id) %>
-        <% end %>
-         (<%= post.likes.count %>)
-      </div>
-    </div>
+    <%= render partial: 'post', locals: { post: post } %>
   <% end %>
 </div>

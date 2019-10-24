@@ -1,0 +1,2 @@
+$('#new_post textarea').val('')
+$('.posts').prepend("<%= escape_javascript render(partial: 'post', locals: { post: @post }) %>")
