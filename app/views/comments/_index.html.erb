@@ -3,7 +3,7 @@
 <div id="commentslidedown">  
   <div class="col-md-12">
     <% @post.comments.each do |comment| %>
-   <div class="post">
+   <div class="comment">
       <%= comment.content %>
   <div class="actions float-right">
     
@@ -23,6 +23,6 @@
 
 <%= render partial: "form" %>
 
-<%= link_to 'back', posts_path %>
+<%#= link_to 'back', posts_path %>
 </div> 
 <%#= link_to 'New comment', new_post_comment_path(@post) %>

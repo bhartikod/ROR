@@ -1,42 +1,36 @@
 
 <div class="clearfix"></div>
-  <%= render partial: "form" %>
-  <hr>
-  <div class="col-md-12 posts">
-    <% @posts.each do |post| %>
-      <%= render partial: "post", locals: {post: post} %>
-    <% end %>
-  </div>
-
-
-
-<!-- Modal -->
-<div class="modal" id="modal-window">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<%= render partial: "form" %>
+<hr>
+<div class="col-md-12 posts">
+  <% @posts.each do |post| %>
+    <%= render partial: "post", locals: {post: post} %>
+  <% end %>
 </div>
-  </div>
 
+<!-- Model for post edit -->
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
 </div>
+
 <script type="text/javascript">
+  var text_max = 10;
+  $('#count_message').html(text_max + ' characters');
 
-var text_max = 10;
-$('#count_message').html(text_max + ' characters');
-
-$('#counting').keydown(function() {
-  
-  var text_length = $('#counting').val().length;
-  var text_remaining = text_max - text_length;
-  if (text_remaining <= 0) {
-      if (event.keyCode == "08")
-      {
+  $('#counting').keydown(function() {
+    
+    var text_length = $('#counting').val().length;
+    var text_remaining = text_max - text_length;
+    if (text_remaining <= 0) {
+      if (event.keyCode == "08") {
         return true
       }
-      else
-      {
+      else {
         return false
       }
     };
-  $('#count_message').html(text_remaining + ' characters');
-});
+    $('#count_message').html(text_remaining + ' characters');
+  });
 </script>
