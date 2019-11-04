@@ -8,21 +8,21 @@ class PostsController < ApplicationController
 	
 	def new
 		@post = current_user.posts.new
-		
 	end
-	
+
 	def create
 		@post = current_user.posts.new(post_params)
- 		if @post.save
-    		redirect_to posts_path
-  		else
-    		render 'new'
-  		end
+		@post.save
+    		
 	end
 	
 	def edit
-		
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
+	
 	def like
     	@post = Post.find(params[:id])
     	if @post.likes.find_by_user_id(current_user.id).present?
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
     	else
       		@post.likes.create(user_id: current_user.id)
     	end
-    		redirect_to posts_path
+    		#redirect_to posts_path
   	end
 	
 	def update

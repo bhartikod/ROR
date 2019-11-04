@@ -1,8 +1,9 @@
-  <div class="col-md-12">
-    <%= form_for @post do |f| %>
-  <%#= form_for :post, url: posts_path do |f|  %>
-  <%= f.label :Post %>
-    <%= f.text_area :title, class: 'form-control', placeholder: 'Add your post here....!', required: true %><br>
-    <%= f.submit class: 'form-control btn btn-primary' %>
-  <% end %>
+ <div class="col-md-12">
+ 	<br>
+   <%= form_for @post, remote: true do |f| %>
+	  <%#= f.label :Post %>
+      <%= f.text_area :title, class: 'form-control', placeholder: 'Add your post here....!', required: true, id: "counting" %>
+       <h6 align="right" id="count_message"></h6><br>
+      <%= f.submit class: 'form-control btn btn-primary' %>
+   <% end %>
 </div>

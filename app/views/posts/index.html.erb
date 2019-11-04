@@ -1,27 +1,42 @@
-<div class="clearfix"></div>
 
-<%= render partial: "form" %>
-<hr>
-<div class="col-md-12">
-  <% @posts.each do |post| %>
-    <div class="post">
-      <%= post.title %>
-      <div class="actions float-right">
-        <%= link_to 'comment', post_comments_path(post.id) %>
-        (<%= post.comments.count %>)
-        |<% if post.user.id == current_user.id %>
-          <%= link_to 'edit', edit_post_path(post) %> | 
-          <%= link_to 'delete', post_path(post), method: "DELETE" , data: {confirm: "Are you sure you want to delete?"} %> |
-        <% end %>
-        
-        <% liked = post.likes.find_by_user_id(current_user.id).present? %>
-        <% if liked %>
-          <%= link_to 'unlike', like_post_path(id: post.id) %>
-        <% else %>
-          <%= link_to 'like', like_post_path(id: post.id) %>
-        <% end %>
-         (<%= post.likes.count %>)
-      </div>
-    </div>
-  <% end %>
+<div class="clearfix"></div>
+  <%= render partial: "form" %>
+  <hr>
+  <div class="col-md-12 posts">
+    <% @posts.each do |post| %>
+      <%= render partial: "post", locals: {post: post} %>
+    <% end %>
+  </div>
+
+
+
+<!-- Modal -->
+<div class="modal" id="modal-window">
+  <div class="modal-dialog">
+    <div class="modal-content">
 </div>
+  </div>
+
+</div>
+<script type="text/javascript">
+
+var text_max = 10;
+$('#count_message').html(text_max + ' characters');
+
+$('#counting').keydown(function() {
+  
+  var text_length = $('#counting').val().length;
+  var text_remaining = text_max - text_length;
+  if (text_remaining <= 0) {
+      if (event.keyCode == "08")
+      {
+        return true
+      }
+      else
+      {
+        return false
+      }
+    };
+  $('#count_message').html(text_remaining + ' characters');
+});
+</script>

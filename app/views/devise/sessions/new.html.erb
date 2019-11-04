@@ -1,43 +1,77 @@
-<div class="container"> 
-<div class="card">
-      <div class="card-header">
-        <h3>Sign In</h3>
-        
-      </div>
-<div class="card-body">
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="input-group form-group">
+<div id="login">
+  <div class="container">
+    <div id="login-row" class="row justify-content-center align-items-center">
+      <div id="login-column" class="col-md-6">
+        <div id="login-box" class="col-md-12">
+          <!-- <form id="login-form" class="form"> -->
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name),class: "form", html: {id: "login-form"}) do |f| %>
+            <h3 class="text-center text-info">Login</h3>
+            
+            <div class="form-group">
+              <label for="username" class="text-info">Username:</label><br>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "form-control" %>
+            </div>
+            
+            <div class="form-group">
+              <label for="password" class="text-info">Password:</label><br>
+              <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+            </div>
+            
+            <div class="form-group">
+             <label for="remember-me" class="text-info"><span>Remember me</span> 
+              <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+              <%= f.submit "Log in", class: "btn btn-info btn-md" %>    
+            </div>
+            
+            <div id="register-link">
+             <%= render "devise/shared/links", class: "text-info"%>
+            </div>
+          
+          <% end %>
+        </div>
+       </div>
+    </div>
+  </div>
+</div> 
+ <!--  <div class="container"> 
+    <div class="d-flex justify-content-center">
+      <div class="card">
+        <div class="card-header">
+          <h3>Sign In</h3>
+         </div>
+        <div class="card-body">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
-  
-    <%#= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "form-control", placeholder: "username"%>
-  </div>
-<div class="input-group form-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-key"></i></span>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "form-control", placeholder: "username"%>
             </div>
-    <%#= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="row align-items-center remember">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.submit "Log in", class: "btn float-right login_btn" %>
-  </div>
-  <div class="card-footer">
-        <div class="d-flex justify-content-center links">
-         <%= render "devise/shared/links" %>
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
+              <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "password_fieldword" %>
+            </div>      
+            <% if devise_mapping.rememberable? %>
+              <div class="row align-items-center remember">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end %>
+            <div class="form-group">
+              <%= f.submit "Log in", class: "btn float-right login_btn" %>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-center links">
+                <%= render "devise/shared/links" %>
+              </div>
+            </div>
+          <% end %>
         </div>
-</div>
-</div>
-<% end %>
+      </div>
+    </div>
+  </div>
 
 
+ -->
