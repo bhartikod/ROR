@@ -3,22 +3,24 @@
 <div id="commentslidedown">  
   <div class="col-md-12">
     <% @post.comments.each do |comment| %>
-   <div class="comment">
-      <%= comment.content %>
-  <div class="actions float-right">
-    
-  <%= link_to 'Edit', edit_comment_path(comment) %> |
-  <%= link_to 'Destroy', comment_path(comment),method: :delete,data: { confirm: 'Are you sure?' } %> |
- 
- <% pre_like = comment.likes.find_by_user_id(current_user.id) %>
-      <% if pre_like %>
-      <%= link_to 'Unlike', like_comment_path(comment) %>
-      <% else %>
-       <%= link_to 'Like', like_comment_path(comment) %> 
-      <% end %> (<%= comment.likes.count %>)
- </div>
-</div>
- 
+    <% if comment.persisted? %>
+       <div class="comment">
+          <%= comment.content %>
+      <div class="actions float-right">
+        
+      <%= link_to 'Edit', edit_comment_path(comment) %> |
+      <%= link_to 'Destroy', comment_path(comment),method: :delete,data: { confirm: 'Are you sure?' } %> |
+
+      <% pre_like = comment.likes.find_by_user_id(current_user.id) %>
+          <% if pre_like %>
+          <%= link_to 'Unlike', like_comment_path(comment) %>
+          <% else %>
+           <%= link_to 'Like', like_comment_path(comment) %> 
+          <% end %> (<%= comment.likes.count %>)
+      </div>
+      </div>
+    <% end %>
+     
 <% end %>
 
 <%= render partial: "form" %>

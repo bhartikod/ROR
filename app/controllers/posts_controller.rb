@@ -34,6 +34,7 @@ class PostsController < ApplicationController
 	
 	def update
 		@post.update(post_params)
+    @error = @post.errors.present?
 	end
 
 	def show

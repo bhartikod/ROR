@@ -3,7 +3,6 @@
 <div class="col-md-12">
 
 <%= form_for [@post , @post.comments.build], remote: true do |f| %>
-
     <%= f.text_area :content, class: 'form-control', placeholder: 'Add your comment here....!', required: true %><br>
 
     <%= f.submit 'Submit', class: 'form-control btn btn-primary' %>

@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
     #@post = Post.find_by_id(params[:id])
     #if @post.present?
       @comments = @post.comments
+      @comment = @post.comments.new
     #else
      # redirect_back fallback_location: root_path
     #end
@@ -12,6 +13,7 @@ def new
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new
    end
+
   def create
    @post = Post.find(params[:post_id])
     if @post.present?

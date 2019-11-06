@@ -1,2 +1,6 @@
-$("#post-<%= @post.id %>").html("<%= escape_javascript render(partial: 'post_content', locals: { post: @post }) %>")
-$("#modal-window").modal('hide');
+if (<%= @error %>) {
+  $("#modal-window .error").html("<%= @post.errors.full_messages.first %>");  
+} else {
+  $("#post-<%= @post.id %>").html("<%= escape_javascript render(partial: 'post_content', locals: { post: @post }) %>")
+  $("#modal-window").modal('hide');
+}
