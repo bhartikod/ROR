@@ -30,15 +30,10 @@ class PostsController < ApplicationController
     	else
       		@post.likes.create(user_id: current_user.id)
     	end
-    		#redirect_to posts_path
   	end
 	
 	def update
-		if @post.update(post_params)
-    		redirect_to posts_path
-  		else
-    		render 'edit'
-  		end
+		@post.update(post_params)
 	end
 
 	def show
@@ -47,11 +42,11 @@ class PostsController < ApplicationController
 	end
 	
 	def destroy
-  		 @post.destroy
- 
-  		 redirect_to posts_path
-	end
+	  @post.destroy
+  end
+
 	private
+
 	def find_post
 		@post = Post.find(params[:id])
 	end
