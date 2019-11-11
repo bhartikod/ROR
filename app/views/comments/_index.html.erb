@@ -1,28 +1,13 @@
-
-
-<div id="commentslidedown">  
-  <div class="col-md-12">
-    <% @post.comments.each do |comment| %>
-   <div class="post">
-      <%= comment.content %>
-  <div class="actions float-right">
-    
-  <%= link_to 'Edit', edit_comment_path(comment) %> |
-  <%= link_to 'Destroy', comment_path(comment),method: :delete,data: { confirm: 'Are you sure?' } %> |
- 
- <% pre_like = comment.likes.find_by_user_id(current_user.id) %>
-      <% if pre_like %>
-      <%= link_to 'Unlike', like_comment_path(comment) %>
-      <% else %>
-       <%= link_to 'Like', like_comment_path(comment) %> 
-      <% end %> (<%= comment.likes.count %>)
- </div>
+<div class="col-md-12 comments">
+  <% @post.comments.each do |comment| %>
+   <%= render partial: "comment", locals: {comment: comment} %>   
+  <% end %>
 </div>
- 
-<% end %>
+ <%= render partial: "form" %>
 
-<%= render partial: "form" %>
-
-<%= link_to 'back', posts_path %>
-</div> 
-<%#= link_to 'New comment', new_post_comment_path(@post) %>
+<!-- Modal -->
+<div class="modal" id="modal-comment">
+  <div class="modal-dialog">
+    <div class="modal-content">
+  </div>
+</div>

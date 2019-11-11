@@ -1,0 +1,2 @@
+$(".comments").append("<%= escape_javascript render(partial: 'comment', locals:{comment: @comment,post: @post}) %>")
+$("#post-<%= @post.id %>-comment").html("<%= escape_javascript render(partial: '/posts/post_comment', locals: { post: @post }) %>")

@@ -1,2 +1,6 @@
-$("#comments").append("<%= escape_javascript render( partial: 'index', locals: {post: @post, comment: @comment}) %>")
- 
+// if (!$("#post-<%= @post.id %>").is(":visible")) {
+
+$("#post-<%= @post.id %>").append("<%= escape_javascript render(partial: 'index', locals: { post: @post, comments: @comments }) %>")
+
+// $("#post-<%= @post.id %>").prepend();
+// $("#post-<%= @post.id %>").slideToggle();

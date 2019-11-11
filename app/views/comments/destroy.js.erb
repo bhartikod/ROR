@@ -1,0 +1,2 @@
+$("#post-<%= @post.id %>-comment").html("<%= escape_javascript render(template: 'posts/_post_comment', locals: { post: @post }) %>")
+$("#comment-<%= @comment.id %>").remove();

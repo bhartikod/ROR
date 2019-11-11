@@ -1,0 +1,2 @@
+$("#comment-<%= @comment.id %>").html("<%= escape_javascript render(partial: 'comment_content', locals: { comment: @comment }) %>")
+$("#modal-comment").modal('hide');			

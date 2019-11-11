@@ -1,12 +1,9 @@
 <div class="container">
 <br>
-<div class="col-md-12">
-
-<%= form_for [@post , @post.comments.build] do |f| %>
-
-    <%= f.text_area :content, class: 'form-control', placeholder: 'Add your comment here....!', required: true %><br>
-
-    <%= f.submit 'Submit Comment', class: 'form-control btn btn-primary' %>
-<% end %>
-</div>
+	<div class="col-md-12">
+		<%= form_for [@post , @post.comments.build], remote: true do |f| %>
+			<%= f.text_area :content, class: 'form-control', placeholder: 'Add your comment here....!', required: true %><br>
+			<%= f.submit 'Comment', class: 'form-control btn btn-primary' %>
+		<% end %>
+	</div>
 </div>

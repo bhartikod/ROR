@@ -1,0 +1,14 @@
+
+<%= post.title %>
+<div class="actions float-right">
+	<span id="post-<%= post.id %>-comment">
+      <%= render partial: "post_comment", locals: {post: post} %>
+  </span>|
+  <% if post.user.id == current_user.id %>
+    <%= link_to 'edit', edit_post_path(post), remote: true, 'data-toggle': "modal", 'data-target': "#modal-window" %> | 
+    <%= link_to 'delete', post_path(post), method: "DELETE" ,remote: true, data: {confirm: "Are you sure you want to delete?"} %> |
+  <% end %>
+  <span id="like-post-<%= post.id %>">
+      <%= render partial: "post_like", locals: {post: post} %>
+  </span>
+</div>
