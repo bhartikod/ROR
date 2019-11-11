@@ -1,31 +1,8 @@
 <div class="col-md-12">
 	<br>
 	<%= form_for @post, remote: true do |f| %>
-	  <%= f.text_area :title, class: 'form-control', placeholder: 'Add your post here....!', required: true, id: "counting" %>
-	   <h6 align="right" id="count_message"></h6><br>
+	  <%= f.text_area :title, class: 'form-control text-content', placeholder: 'Add your post here....!', required: true %>
+	   <h6 align="right" class="count_message"></h6><br>
 	  <%= f.submit class: 'form-control btn btn-primary' %>
 	<% end %>
 </div>
-
-<script type="text/javascript">
-var text_max = 10;
-var str = "maximum 10 characters";
-$('#count_message').html(text_max + ' characters');
-$('#counting').keydown(function() {
-  var text_length = $('#counting').val().length;
-  var text_remaining = text_max - text_length;
-  if (text_remaining <= 0) {
-    $('#count_message').html(str.fontcolor('red'));
-    if (event.keyCode == "08")
-    {
-      return true
-    }
-    else
-    {
-      return false
-    }
-  };
-
-  $('#count_message').html(text_remaining + ' characters');
-});
-</script>
