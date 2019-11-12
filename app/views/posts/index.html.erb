@@ -4,10 +4,8 @@
 <!-- <div class="clearfix"></div> -->
   <%= render partial: "form" %>
   <hr>
-  <div class="col-md-12 posts">
-    <% @posts.each do |post| %>
-      <%= render partial: "post", locals: {post: post} %>
-    <% end %>
+  <div class="col-md-12 posts" id='posts'>
+    <%= render partial: "posts", locals: { posts: @posts } %>
   </div>
 <!-- Modal -->
 <div class="modal" id="modal-window">
@@ -16,26 +14,23 @@
   </div>
 </div>
 
-<!-- <script>
+<script>
 $(document).ready(function(){
   $("#myInput").on("keyup", function()  {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    for (i = 0; i < post.length; i++) {
-        
-        if (li[0].toUpperCase().includes(input)) {
-            li[i].style.display = "kkkk";
-        } 
-        else
-         {
-            li[i].style.display = "none";
-        }
-    }
-}
-)}
-</script> -->
-<script>
+    var input = $(this).val()
+    $.ajax({
+      data: { query: input },
+      dataType: 'json',
+      url: '/posts/search',
+      success: function() {
+      }
+    });
+  })
+});
+
+
+</script>
+<!-- <script>
   $(document).ready(function(){
     $("#myInput").on("keyup", function() {
       var value = $(this).val().toLowerCase();
@@ -44,7 +39,7 @@ $(document).ready(function(){
       });
     });
   });
-</script>
+</script> -->
 
 <script type="text/javascript">
   var text_max = 10;
@@ -71,7 +66,6 @@ $(document).ready(function(){
         return false
       }
     };
-
     count_div.html(text_remaining + ' characters');
   });
 </script>

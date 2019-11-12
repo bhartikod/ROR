@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     member do 
       get :like
     end
+    collection do
+      get :search
+    end
     resources :comments, only: [:index, :new, :create]
   end
   #resources :comments, only: [:edit, :show, :update, :destroy]
