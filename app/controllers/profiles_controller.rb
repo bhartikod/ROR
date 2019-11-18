@@ -17,16 +17,17 @@ class ProfilesController < ApplicationController
 	end
 	
 	def edit
+		@profile = Profile.find(params[:id])
 	end
 	
 	def update
-		
-		if @profile.update(profile_params)
-    		redirect_to @profile
-  		else
-    		render 'edit'
-  		end
+		@profile.update(profile_params)
+		respond_to do |format|
+    		format.html { redirect_to @profile }
+    		format.js { }
+		end
 	end
+	
 	def show
 		@profile = Profile.find(params[:id])
 	end
@@ -36,6 +37,6 @@ class ProfilesController < ApplicationController
   		@profile = current_user.profile
 	end
 	def profile_params
-		params.require(:profile).permit(:fname, :lname, :address)
+		params.require(:profile).permit(:fname, :lname, :address, :image)
 	end
 end

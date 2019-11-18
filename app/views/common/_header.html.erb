@@ -3,7 +3,9 @@
     <a class="navbar-brand" href="/">LOGO</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <%= link_to 'Profile', edit_profile_path(current_user.profile), class: "nav-link" %>
+        <% if current_user.profile.present? %>
+        <%= link_to 'Profile', profile_path(current_user.profile), class: "nav-link" %>
+        <% end %>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">

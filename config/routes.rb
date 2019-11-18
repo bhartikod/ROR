@@ -6,22 +6,12 @@ Rails.application.routes.draw do
         
       }
    resources :profiles
-  # resources :posts do
-  #   member do
-  #     get :like
-  #   end
-  # 	resources :comments
-    
-  # end
-  # resource :comments, only: [] do
-  #   member do 
-  #    get :like
-  #   end
-  # end
-   
   resources :posts do 
     member do 
       get :like
+    end
+    collection do
+      get :search
     end
     resources :comments, only: [:index, :new, :create]
   end
