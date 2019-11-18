@@ -2,7 +2,7 @@
 	<br>
 	<%= form_for @post, remote: true do |f| %>
 	  <%= f.text_area :title, class: 'form-control text-content', placeholder: 'Add your post here....!', required: true %>
-	   <h6 align="right" class="count_message"></h6><br>
+	  <h6 align="right" class="count_message"></h6><br>
 	  <%= f.submit class: 'form-control btn btn-primary' %>
 	<% end %>
 </div>

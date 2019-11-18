@@ -43,6 +43,11 @@ class PostsController < ApplicationController
   		 @post.destroy 
 	end
 
+	def search
+		# You need to add here query based on Like query 
+		@posts = Post.last(2)
+	end
+
 	private
 	
 	def find_post
