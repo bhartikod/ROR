@@ -9,20 +9,22 @@
   $(function(){
     $("#ajaxsubmit").on("click", function(event){
       event.preventDefault();
-      debugger
-      var action = $("form").attr('action');
-      var fname = $("form").find('#profile_fname').val();
-      var lanme = $("form").find('#profile_lname').val();
-      var address = $("form").find('#profile_address').val();
-      var image = $("form").find('#profile_image').val();
-      $.ajax({
-        type: "PATCH",
-        url: action,
-        data: { fname: fname,lanme: lname,address: address,image: image }
-      });   
+      var form = this.parentElement
+      data = new FormData( form );
+      url = $(form).attr('action');
+      $.ajax( {
+        url: url,
+        type: 'PUT',
+        data: data,
+        processData: false,
+        contentType: false,
+        success: function(response){
+          alert(response.message)
+        }
+      });
     });
   });
-
+   
   function readURL(input) {
    if (input.files && input.files[0]) {
         var reader = new FileReader();

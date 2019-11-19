@@ -11,7 +11,7 @@
   <strong>Address:</strong>
   <%= @profile.address %>
 </p>
-<p>
-<%= image_tag (@profile.image_url.to_s) %>
 
-</p>
+<div class="profile-img">
+  <%= image_tag (@profile.image_url.to_s) %>
+</div>

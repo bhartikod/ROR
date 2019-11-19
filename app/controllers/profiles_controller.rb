@@ -22,10 +22,7 @@ class ProfilesController < ApplicationController
 	
 	def update
 		@profile.update(profile_params)
-		respond_to do |format|
-    		format.html { redirect_to @profile }
-    		format.js { }
-		end
+		render json: { success: true, message: "Profile updated successfully!" }
 	end
 	
 	def show

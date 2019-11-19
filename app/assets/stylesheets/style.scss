@@ -12,3 +12,10 @@
   padding: 5px 10px;
 }
 
+#preview, .profile-img img {
+  width: 150px;
+  border-radius: 100px;
+  height: 150px;
+  border: 2px solid;
+  border-color: gray;
+}
