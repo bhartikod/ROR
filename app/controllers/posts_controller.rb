@@ -14,6 +14,10 @@ class PostsController < ApplicationController
 		@post.save
    	end
 	
+   	def search
+   		@posts = Post.last()
+   	end
+
 	def edit	
 	end
 	

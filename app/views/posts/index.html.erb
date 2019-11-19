@@ -1,4 +1,12 @@
 <br>
+<input class="form-control" id="myInput" type="text" placeholder="Search..">
+<br>
+<%= render partial: "form" %>
+<hr>
+<div class="col-md-12 posts" id="posts">
+  <%= render partial: "posts", locals: { posts: @posts } %>
+</div>
+  
   <input class="form-control" id="myInput" type="text" placeholder="Search..">
   <br>
 <!-- <div class="clearfix"></div> -->
@@ -14,49 +22,14 @@
   </div>
 </div>
 
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function()  {
-    var input = $(this).val()
-    if (input.length >= 3) {
-      $.ajax({
-        data: { query: input },
-        type: 'GET',
-        url: '/posts/search',
-        success: function(response) {
-        }
-      });
-    }
-  })
-});
-
-
-</script>
-<!-- <script>
-  $(document).ready(function(){
-    $("#myInput").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $(".posts").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
-    });
-  });
-</script> -->
-
 <script type="text/javascript">
   var text_max = 10;
   var str = "maximum 10 characters";
-
-  // $('.text-content').keydown(function() {
-  //   // Until any partial page renders on the page
-  //   // Will not be applicable for any new partial page
-  // }
 
   $(document).on('keydown', '.text-content', function() {
     var text_length = $(this).val().length;
     var text_remaining = text_max - text_length;
     var count_div = $(this).parent('form').find('.count_message')
-
     if (text_remaining <= 0) {
       count_div.html(str.fontcolor('red'));
       if (event.keyCode == "08")
@@ -69,5 +42,19 @@ $(document).ready(function(){
       }
     };
     count_div.html(text_remaining + ' characters');
+  });
+
+  $(document).ready(function(){
+    $("#myInput").on("keyup", function(){
+      var input = $(this).val()
+      $.ajax({
+        data: { query: input },
+        type: 'GET',
+        url: '/posts/search',
+        success: function() {
+
+      }
+      });
+    })
   });
 </script>

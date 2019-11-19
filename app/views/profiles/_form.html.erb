@@ -1,5 +1,4 @@
-<%= form_for @profile do |f| %>
- 
+<%= form_for @profile, id:"form1", runat:"server" do |f| %>
   <% if @profile.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -23,12 +22,51 @@
     <%= f.label :"Last Name" %><br>
     <%= f.text_field :lname %>
   </p>
-
+  <p>
     <%= f.label :"Address" %><br>
     <%= f.text_field :address %>
   </p>
+  <p>
+    <%= f.label :"Image" %><br>
+    <%= f.file_field :image, id: "userimage" %>
+  </p>
+  <img id="preview" src="#" alt="your image" />
+
    <p>
     <%= f.submit :save %>
+    <%= f.submit :ajax, id:"ajaxsubmit" %>
   </p>
  
 <% end %>
+<script>
+$(function(){
+  $("#ajaxsubmit").on("click", function(event){
+    event.preventDefault();
+    var action = $("form").attr('action');
+    var fname = $("form").find('#profile_fname').val();
+    var lanme = $("form").find('#profile_lname').val();
+    var address = $("form").find('#profile_address').val();
+    var image = $("form").find('#profile_image').val();
+    $.ajax({
+      type: "PATCH"
+      url: action,
+      data: { fname: fname,lanme: lname,address: address,image: image }
+    });   
+  });
+});
+</script>
+
+<script>
+function readURL(input) {
+   if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#preview').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+  $("#userimage").change(function(){
+    readURL(this);
+  });
+</script>

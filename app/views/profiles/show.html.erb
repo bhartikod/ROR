@@ -1,16 +1,6 @@
-<p>
-  <strong>First name:</strong>
-  <%= @profile.fname %>
-</p>
- 
-<p>
-  <strong>Last name:</strong>
-  <%= @profile.lname %>
-</p>
-<p>
-  <strong>Address:</strong>
-  <%= @profile.address %>
-</p>
- <td><%= link_to 'Edit', edit_profile_path(@profile) %></td>
+<div id="showprofile">
+	<%= render partial: 'show' %>
+</div>
+ <%= link_to 'Edit', edit_profile_path(@profile) %>
  <br>
- <%= link_to 'Back', posts_path %>
+ <%= link_to 'Back', posts_path %> 
