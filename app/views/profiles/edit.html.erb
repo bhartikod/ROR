@@ -4,3 +4,35 @@
 <%= render 'form' %>
  
 <%= link_to 'Back', profiles_path %>
+
+<script>
+  $(function(){
+    $("#ajaxsubmit").on("click", function(event){
+      event.preventDefault();
+      debugger
+      var action = $("form").attr('action');
+      var fname = $("form").find('#profile_fname').val();
+      var lanme = $("form").find('#profile_lname').val();
+      var address = $("form").find('#profile_address').val();
+      var image = $("form").find('#profile_image').val();
+      $.ajax({
+        type: "PATCH",
+        url: action,
+        data: { fname: fname,lanme: lname,address: address,image: image }
+      });   
+    });
+  });
+
+  function readURL(input) {
+   if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#preview').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $(document).on('change', "#userimage", function() {
+    readURL(this);
+  });
+</script>
