@@ -18,13 +18,15 @@
 $(document).ready(function(){
   $("#myInput").on("keyup", function()  {
     var input = $(this).val()
-    $.ajax({
-      data: { query: input },
-      dataType: 'json',
-      url: '/posts/search',
-      success: function() {
-      }
-    });
+    if (input.length >= 3) {
+      $.ajax({
+        data: { query: input },
+        type: 'GET',
+        url: '/posts/search',
+        success: function(response) {
+        }
+      });
+    }
   })
 });
 

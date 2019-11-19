@@ -41,8 +41,9 @@ class PostsController < ApplicationController
 
 	def search
 		# You need to add here query based on Like query 
-		@posts = Post.last(2)
+		@posts = Post.where("title LIKE ? OR description LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
 	end
+
 
 	private
 	
