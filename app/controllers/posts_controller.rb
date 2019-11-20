@@ -14,8 +14,9 @@ class PostsController < ApplicationController
 		@post.save
    	end
 	
+   	
    	def search
-   		@posts = Post.last()
+   		@posts = Post.where("title LIKE ? ", "%#{params[:query]}%" )
    	end
 
 	def edit	
@@ -41,11 +42,6 @@ class PostsController < ApplicationController
 	
 	def destroy
   		 @post.destroy 
-	end
-
-	def search
-		# You need to add here query based on Like query 
-		@posts = Post.last(2)
 	end
 
 	private
