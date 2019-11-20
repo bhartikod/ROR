@@ -5,9 +5,7 @@ class ProfilesController < ApplicationController
 	end
 	
 	def create
-		#@profile = Profile.new(profile_params)
 		@profile = current_user.build_profile(profile_params)
-		#@profile.user_id = current_user.id
 		if @profile.save
 			
     		redirect_to posts_path
@@ -21,11 +19,9 @@ class ProfilesController < ApplicationController
 	end
 	
 	def update
-		@profile.update(profile_params)
-		respond_to do |format|
-    		format.html { redirect_to @profile }
-    		format.js { }
-		end
+		
+		@profile.update(profile_params)    	
+		render json: { success: true, message: "Profile updated successfully!" }
 	end
 	
 	def show

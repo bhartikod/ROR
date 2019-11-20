@@ -1,17 +1,17 @@
-<p>
-  <strong>First name:</strong>
-  <%= @profile.fname %>
-</p>
- 
-<p>
-  <strong>Last name:</strong>
-  <%= @profile.lname %>
-</p>
-<p>
-  <strong>Address:</strong>
-  <%= @profile.address %>
-</p>
-<p>
-<%= image_tag (@profile.image_url.to_s) %>
-
-</p>
+<div class="container">
+	<div class="profile-img" align="center">
+  		<%= image_tag (@profile.image_url.to_s) %>
+	</div>
+	<strong>First name:</strong>
+  	<span><div class="post">
+  		<%= @profile.fname %>
+	</div></span>
+  	<strong>Last name:</strong>
+  	<div class="post">
+ 		<%= @profile.lname %>
+	</div>
+  	<strong>Address:</strong>
+	<div class="post">
+  		<%= @profile.address %>
+	</div>
+</div>

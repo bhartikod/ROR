@@ -1,18 +1,5 @@
+
 <%= form_for @profile, id:"form1", runat:"server" do |f| %>
-  <% if @profile.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@profile.errors.count, "error") %> prohibited
-        this profile from being saved:
-      </h2>
-      <ul>
-        <% @profile.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
- 
   <p>
     <%= f.label :"first name" %><br>
     <%= f.text_field :fname %>
@@ -34,39 +21,7 @@
 
    <p>
     <%= f.submit :save %>
-    <%= f.submit :ajax, id:"ajaxsubmit" %>
   </p>
- 
+ <%= link_to 'Ajax Submit', '#-', id: "ajaxsubmit" %>  
 <% end %>
-<script>
-$(function(){
-  $("#ajaxsubmit").on("click", function(event){
-    event.preventDefault();
-    var action = $("form").attr('action');
-    var fname = $("form").find('#profile_fname').val();
-    var lanme = $("form").find('#profile_lname').val();
-    var address = $("form").find('#profile_address').val();
-    var image = $("form").find('#profile_image').val();
-    $.ajax({
-      type: "PATCH"
-      url: action,
-      data: { fname: fname,lanme: lname,address: address,image: image }
-    });   
-  });
-});
-</script>
-
-<script>
-function readURL(input) {
-   if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          $('#preview').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-  $("#userimage").change(function(){
-    readURL(this);
-  });
-</script>
+<!-- <button id= "ajaxsubmit" > ajax </button> -->

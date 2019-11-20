@@ -1,6 +1,42 @@
-
+<div id="prompt"></div>
 <h1>Edit profile</h1>
  
 <%= render 'form' %>
  
 <%= link_to 'Back', profiles_path %>
+
+<script>
+$(function(){
+    $("#ajaxsubmit").on("click", function(event){
+    event.preventDefault();
+     var form = this.parentElement
+      data = new FormData( form );
+      url = $(form).attr('action');
+      $.ajax( {
+        url: url,
+        type: 'PUT',
+        data: data,
+        processData: false,
+        contentType: false,
+        success: function(response){
+          alert(response.message)
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+function readURL(input) {
+   if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#preview').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+  $("#userimage").change(function(){
+    readURL(this);
+  });
+</script>
