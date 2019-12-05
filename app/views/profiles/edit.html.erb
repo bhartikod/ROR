@@ -9,7 +9,7 @@
 $(function(){
     $("#ajaxsubmit").on("click", function(event){
     event.preventDefault();
-     var form = this.parentElement;
+     var form = this.parentElement
       data = new FormData( form );
       url = $(form).attr('action');
       $.ajax( {
