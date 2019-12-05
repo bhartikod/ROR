@@ -1,7 +1,6 @@
 <script>
 $(function(){
   $("form").submit(function(event){
-    debugger
     event.preventDefault();
     var action = $(this).attr('action');
     var fname = $(this).find('#profile_fname').val();
