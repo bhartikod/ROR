@@ -1,9 +1,9 @@
 class Users::OmniauthCallbacksController < ApplicationController
 	 def facebook
         @user = UserProvider.find_for_provider_data(request.env["omniauth.auth"])
-        debugger
+      
         if @user.persisted?
-          debugger
+          
           sign_in_and_redirect @user, :event => :authentication               
         else
           session["devise.facebook_data"] = request.env["omniauth.auth"]
