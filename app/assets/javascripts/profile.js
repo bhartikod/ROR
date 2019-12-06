@@ -1,4 +1,4 @@
-<script>
+/*<script>
 $(function(){
   $("form").submit(function(event){
     event.preventDefault();
@@ -8,10 +8,11 @@ $(function(){
     var address = $(this).find('#profile_address').val();
     var image = $(this).find('#profile_image').val();
     $.ajax({
-      type: "PATCH"
+      type: "PATCH",
       url: action,
       data: { fname123: fname,lanme: lname,address: address,image: image }
-    });   
+    });  
   });
 });
-</script>
+
+</script>*/
